@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script{
                    sh """
-                   ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/my-key.pem ec2-user@${SPRING_SERVER_IP} << EOF
+                   ssh -o StrictHostKeyChecking=no -i /home/ubuntu/.ssh/ci_cd-server.pem ec2-user@${SPRING_SERVER_IP} << EOF
                    docker pull ${repository}:${IMAGE_TAG}
                    docker stop spring-app || true
                    docker rm spring-app || true
