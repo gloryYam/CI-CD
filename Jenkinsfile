@@ -38,9 +38,20 @@ pipeline {
             }
         }
 
+        // 새로운 빌드 단계 추가
+        stage('Build JAR') {
+            steps {
+                script {
+                    // Gradle 빌드를 통해 JAR 파일 생성
+                    sh './gradlew clean build'
+                }
+            }
+        }
+
         stage('Building Image') {
             steps {
                 script {
+                    // Docker 이미지를 빌드합니다
                     sh "docker build -t ${repository}:${IMAGE_TAG} ."
                 }
             }
