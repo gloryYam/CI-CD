@@ -38,6 +38,15 @@ pipeline {
             }
         }
 
+         // gradlew 파일에 실행 권한 부여
+                stage('Grant Execute Permission') {
+                    steps {
+                        script {
+                            sh 'chmod +x ./gradlew'
+                        }
+                    }
+                }
+
         // 새로운 빌드 단계 추가
         stage('Build JAR') {
             steps {
