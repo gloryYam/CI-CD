@@ -4,7 +4,7 @@ WORKDIR /workspace
 
 COPY . .
 
-RUN ./gradlew clean build --no-daemon
+RUN ./gradlew clean build
 
 COPY /build/libs/*SNAPSHOT.jar application.jar
 
