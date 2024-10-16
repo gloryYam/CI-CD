@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk as builder
+FROM openjdk:17-jdk AS builder
 
 WORKDIR /workspace
 
