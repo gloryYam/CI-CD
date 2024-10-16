@@ -82,16 +82,10 @@ pipeline {
 
         stage('Deploy to Spring Server') {
             steps {
-                script{
-                   sh """
-                   chmod 400 /home/ubuntu/ssh/ci_cd-server.pem
-                   ssh -o StrictHostKeyChecking=no -i /home/ubuntu/ssh/ci_cd-server.pem ec2-user@${SPRING_SERVER_IP} << EOF
-                   docker pull ${repository}:${IMAGE_TAG}
-                   docker stop spring-app || true
-                   docker rm spring-app || true
-                   docker run -d --name spring-app -p 8080:8080 ${repository}:${IMAGE_TAG}
-                   EOF
-                   """
+                sshagent (credentials: ['DeployServer_Private_Key']) {
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ubuntu@${SPRING_SERVER_IP} ubuntu
+                        scp
                 }
             }
         }
