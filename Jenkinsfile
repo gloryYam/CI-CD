@@ -107,7 +107,7 @@ pipeline {
         }
 
         success {
-            echo 'Build and deployment successfuld'
+            echo 'Build and deployment successful'
         }
         failure{
             echo 'Build and deployment failed'
