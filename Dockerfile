@@ -2,12 +2,6 @@ FROM openjdk:17-jdk AS builder
 
 WORKDIR /workspace
 
-RUN apt-get update && apt-get install -y xargs
-
-COPY . .
-
-RUN ./gradlew clean build
-
 COPY /build/libs/*SNAPSHOT.jar application.jar
 
 RUN java -Djarmode=layertools -jar application.jar extract
