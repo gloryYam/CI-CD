@@ -2,6 +2,8 @@ FROM openjdk:17-jdk AS builder
 
 WORKDIR /workspace
 
+RUN apt-get update && apt-get install -y xargs
+
 COPY . .
 
 RUN ./gradlew clean build
