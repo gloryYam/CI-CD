@@ -3,7 +3,7 @@ version: '3.8'
 services:
   jdk:
     container_name: jdk
-    image: openjdk:17-jdk
+    build: .
     restart: always
     ports:
       - 8080:8080
@@ -18,17 +18,19 @@ services:
   db:
     container_name: mariadb
     image: mariadb
-    environment:
-      MARIADB_ROOT_PASSWORD: pwd123
-      MARIADB_DATABASE: mydb  # mariadb 최초 실행 시 mydb라는 데이터베이스를 생성해준다
-    volumes:
-      - ./maria_data:/var/lib/mysql  # 데이터가 저장될 경로 수정
     ports:
       - 3306:3306
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 5s  # 5초 간격으로 체크
-      retries: 10   # 10번까지 재시도
+    volumes:
+        - ~/docker/mariadb/etc/mysql/conf.d:/etc/mysql/conf.d:ro
+        - ~/docker/mariadb/var/lib/mysql:/var/lib/mysql
+        - ~/docker/mariadb/var/log/maria:/var/log/maria
+    environment:
+        - TZ="Asia/Seoul"
+        - ALLOW_EMPTY_PASSWORD=no
+        - MARIADB_ROOT_PASSWORD=qwd123
+        - MARIADB_USER=root
+        - MARIADB_DATABASE=mydb
+        - MARIADB_PASSWORD=qwd123
     networks:
       - app-network
 

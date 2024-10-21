@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:mysql://my-db:3306/mydb
+    url: jdbc:mariadb://db:3306/mydb
     username: root
     password: pwd123
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
     properties:
@@ -12,5 +12,5 @@ spring:
 
   data:
     redis:
-      host: my-cache-server
+      host: redis
       port: 6379
