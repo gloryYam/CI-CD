@@ -16,29 +16,27 @@ services:
       - app-network
 
   db:
-    container_name: mariadb
-    image: mariadb:latest
+    image: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: pwd123
-      MYSQL_DATABASE: mydb
+      MARIADB_ROOT_PASSWORD: pwd123
+      MARIADB_DATABASE: mydb  # mariadb 최초 실행 시 mydb 라는 데이터베이스를 생성해준다
     volumes:
-      - ./maria_data:/var/lib/mysql  # 데이터가 저장될 경로 수정
+      - ./maria_data:/etc/mysql/conf.
     ports:
-      - 3306:3306
+      - 3307:3306
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      test: [ "CMD", "healthcheck.sh", "--connect", "--user=root", "--password=pwd123", "--database=mydb" ]
       interval: 5s  # 5초 간격으로 체크
       retries: 10   # 10번까지 재시도
     networks:
       - app-network
 
   redis:
-    container_name: redis
     image: redis
     ports:
       - 6379:6379
-    healthcheck:  # 오타 수정
-      test: ["CMD", "redis-cli", "ping"]
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       retries: 10
     networks:
