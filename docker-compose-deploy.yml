@@ -21,11 +21,11 @@ services:
     volumes:
       - ./mysql_data:/var/lib/mysql
     ports:
-      - 3307:3306
+      - 3306:3306
     healthcheck:
-      test: [ "CMD", "healthcheck.sh", "--connect", "--user=root", "--password=pwd123", "--database=mydb" ]
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
       interval: 5s  # 5초 간격으로 체크
-      retries: 10   # 10번까지 재시도
+      retries: 5   # 10번까지 재시도
 
   redis:
     image: redis
