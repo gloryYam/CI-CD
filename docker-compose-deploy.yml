@@ -19,7 +19,7 @@ services:
       MYSQL_ROOT_PASSWORD: pwd123
       MYSQL_DATABASE: mydb  # mariadb 최초 실행 시 mydb 라는 데이터베이스를 생성해준다
     volumes:
-      - ./mysql_data:/etc/mysql/conf.
+      - ./mysql_data:/var/lib/mysql
     ports:
       - 3307:3306
     healthcheck:
