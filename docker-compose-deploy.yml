@@ -12,8 +12,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    networks:
-      - app-network
 
   db:
     image: mysql
@@ -28,8 +26,6 @@ services:
       test: [ "CMD", "healthcheck.sh", "--connect", "--user=root", "--password=pwd123", "--database=mydb" ]
       interval: 5s  # 5초 간격으로 체크
       retries: 10   # 10번까지 재시도
-    networks:
-      - app-network
 
   redis:
     image: redis
@@ -39,12 +35,3 @@ services:
       test: [ "CMD", "redis-cli", "ping" ]
       interval: 5s
       retries: 10
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
-
-volumes:
-  maria__data:
