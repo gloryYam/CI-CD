@@ -21,8 +21,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pwd123
       MYSQL_DATABASE: mydb
-      MYSQL_USER: asdf
-      MYSQL_PASSWORD: pwd123
     volumes:
       - ./maria_data:/var/lib/mysql  # 데이터가 저장될 경로 수정
     ports:
