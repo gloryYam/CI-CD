@@ -3,7 +3,7 @@ spring:
     url: jdbc:mysql://db:3306/mydb
     username: root
     password: pwd123
-    driver-class-name: org.mariadb.jdbc.Driver
+    driver-class-name: org.mysql.jdbc.Driver
 
   jpa:
     properties:
