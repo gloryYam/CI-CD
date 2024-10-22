@@ -18,8 +18,8 @@ services:
   db:
     image: mysql
     environment:
-      MARIADB_ROOT_PASSWORD: pwd123
-      MARIADB_DATABASE: mydb  # mariadb 최초 실행 시 mydb 라는 데이터베이스를 생성해준다
+      MYSQL_ROOT_PASSWORD: pwd123
+      MYSQL_DATABASE: mydb  # mariadb 최초 실행 시 mydb 라는 데이터베이스를 생성해준다
     volumes:
       - ./mysql_data:/etc/mysql/conf.
     ports:
