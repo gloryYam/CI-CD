@@ -3,7 +3,7 @@ version: '3.8'
 services:
   jdk:
     container_name: jdk
-    build: .
+    image: glory3333/spring-project_ci-cd:${IMAGE_TAG}
     restart: always
     ports:
       - 8080:8080
